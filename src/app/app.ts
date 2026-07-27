@@ -1,28 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectorRef, Component, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { Slider } from './slider/slider';
 import { ProductCard } from './product-card/product-card';
-import { Table } from './table/table';
 import { FormsModule } from '@angular/forms';
+import { Product } from './services/product';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Slider, ProductCard, Table, FormsModule],
+  imports: [RouterOutlet, Slider, ProductCard, FormsModule, JsonPipe],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  name_list: any[] = [];
-  name: string = '';
-  age: number = 0;
-  onSave() {
-    this.name_list.push(
-      {
-        name: this.name,
-        age: this.age,
-      }
-    )
+  constructor(
+    public products: Product,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
-    console.log(this.name_list);
+  product_list: any = [];
+  async ngOnInit() {
+    this.product_list = await this.products.getProducts();
+    this.cdr.detectChanges();
   }
 }
