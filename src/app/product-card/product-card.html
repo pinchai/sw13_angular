@@ -9,6 +9,13 @@
       class="card-img-top"
       alt="Product Image"
       style="height: 150px; object-fit: contain;"
+      [routerLink]="['/product-detail']"
+      [queryParams]="{
+          name: name,
+          price: price,
+          description:description,
+          image: image
+       }"
     >
 
     <!-- Badge -->
@@ -17,7 +24,6 @@
       New
     </span>
   </div>
-
   <!-- Card Body -->
   <div class="card-body p-4">
 
