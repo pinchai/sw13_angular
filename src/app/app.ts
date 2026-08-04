@@ -4,11 +4,11 @@ import { Slider } from './slider/slider';
 import { ProductCard } from './product-card/product-card';
 import { FormsModule } from '@angular/forms';
 import { Product } from './services/product';
-import { JsonPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Slider, ProductCard, FormsModule, JsonPipe],
+  imports: [RouterOutlet, Slider, ProductCard, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
